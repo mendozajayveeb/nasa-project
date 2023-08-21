@@ -99,6 +99,14 @@ async function getAllLaunches(skip, limit) {
         .sort({ flightNumber: 1})
 }
 
+async function getOneLaunch(id) {
+    const query = {
+        flightNumber: id,
+    }
+
+    return await findLaunch(query)
+}
+
 async function saveLaunch(launch) {
     return await launchesDb.findOneAndUpdate(
         {
@@ -154,4 +162,5 @@ module.exports = {
     getAllLaunches,
     scheduleNewLaunch,
     removeLaunch,
+    getOneLaunch,
 }

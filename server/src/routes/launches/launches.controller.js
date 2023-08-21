@@ -3,6 +3,7 @@ const {
     scheduleNewLaunch,
     removeLaunch,
     isLaunchExists,
+    getOneLaunch,
 } = require('../../models/launches.model')
 
 const { getPagination } = require('../../services/query')
@@ -10,6 +11,19 @@ const { getPagination } = require('../../services/query')
 async function httpGetAllLaunches(req, res) {
     const { skip, limit } = getPagination(req.query)
     const launches = await getAllLaunches(skip, limit)
+    return res.status(200).json(launches)
+}
+
+async function httpGetOneLaunch(req, res) {
+    const id = req.params.id
+
+    if (!(await isLaunchExists(id))) {
+        return res.status(404).json({
+            message: 'Mission not found',
+        })
+    }
+
+    const launches = await getOneLaunch(id)
     return res.status(200).json(launches)
 }
 
@@ -48,6 +62,7 @@ async function httpDeleteLaunches(req, res) {
 
 module.exports = {
     httpGetAllLaunches,
+    httpGetOneLaunch,
     httpPostLaunches,
     httpDeleteLaunches,
 }
