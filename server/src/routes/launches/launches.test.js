@@ -2,7 +2,6 @@ const request = require('supertest')
 const app = require('../../app')
 const { mongoConnection, mongoDisconnect } = require('../../services/mongo')
 const { loadPlanetsData } = require('../../models/planets.model')
-const { getLatestFlightNumber } = require('../../models/launches.model')
 
 describe('Test Launches APIs', () => {
     // Run mongo connection before all test executions
@@ -74,9 +73,8 @@ describe('Test Launches APIs', () => {
 
     describe('Test DELETE /launches', () => {
         test('It should return 200 success', async () => {
-            let latestLaunch = getLatestFlightNumber()
             let response = await request(app)
-                .delete(`/v1/launches/${latestLaunch}`)
+                .delete(`/v1/launches/99`)
                 .expect('Content-Type', /json/)
                 .expect(200)
 
