@@ -1,26 +1,19 @@
 name: NASA Project CI
-
 on:
   push: 
     branches: [ master ]
-
   pull_request:
     branches: [ master ]
-
 jobs:
-
   build: 
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Use NodeJS v20
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
-      - name: Build and install
+      # - name: Build and install
         run: |
           npm install
           npm run build --prefix client
