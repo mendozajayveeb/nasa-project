@@ -1,11 +1,13 @@
 const request = require('supertest')
 const app = require('../../app')
 const { mongoConnection, mongoDisconnect } = require('../../services/mongo')
+const { loadPlanetsData } = require('../../models/planets.model')
 
 describe('Test Launches APIs', () => {
     // Run mongo connection before all test executions
     beforeAll(async () => {
         await mongoConnection()
+        await loadPlanetsData() // Load planets data for running tests via cicd
     })
 
     // Disconnects to mongo after all test executions
