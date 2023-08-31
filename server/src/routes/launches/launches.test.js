@@ -27,12 +27,12 @@ describe('Test Launches APIs', () => {
 
     describe('Test GET /launches/{id}', () => {
         /* check response by calling the endpoint */
-        // test('It should respond with 200 success', async () => {
-        //     await request(app)
-        //         .get('/v1/launches/1')
-        //         .expect('Content-Type', /json/)
-        //         .expect(200)
-        // })
+        test('It should respond with 200 success', async () => {
+            await request(app)
+                .get('/v1/launches/1')
+                .expect('Content-Type', /json/)
+                .expect(200)
+        })
 
         test('It should respond with 404 success', async () => {
             await request(app)
