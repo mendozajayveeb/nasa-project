@@ -44,7 +44,7 @@ describe('Test Launches APIs', () => {
 
     describe('Test POST /launches', () => {
         let launchRequest = {
-            mission: 'Kepler Expoloration XII',
+            mission: 'Kepler Expoloration XIITBS',
             rocket: 'Explorer IS2',
             launchDate: 'July 15, 2024',
             target: 'Kepler-442 b',
